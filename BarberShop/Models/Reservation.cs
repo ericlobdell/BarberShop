@@ -1,10 +1,11 @@
 ﻿using System;
 namespace BarberShop.Models
 {
-    public class Reservation
+    public class Reservation: DbEntity
     {
-        public Reservation()
-        {
-        }
+        public DateTime ReservationTime { get; set; }
+        public int BarberId { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

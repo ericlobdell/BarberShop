@@ -1,10 +1,10 @@
 ﻿using System;
+using BarberShop.Services;
+
 namespace BarberShop.Models
 {
     public class Barber: DbEntity
     {
-        public Barber()
-        {
-        }
+        public string Name { get; set; }
     }
 }

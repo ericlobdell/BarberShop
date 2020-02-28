@@ -3,8 +3,6 @@ namespace BarberShop.Models
 {
     public class DbEntity
     {
-        public DbEntity()
-        {
-        }
+        public int Id { get; set; }
     }
 }
