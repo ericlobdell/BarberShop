@@ -28,7 +28,7 @@ namespace BarberShop
             services.AddControllersWithViews();
 
             services.AddTransient<IBarberRepository, BarberRepository>();
-            services.AddTransient<IBarberService, BarberService>();
+            services.AddTransient<IReservationService, ReservationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

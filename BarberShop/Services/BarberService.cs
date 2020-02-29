@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BarberShop.Models;
 using BarberShop.Repositories;
 
 namespace BarberShop.Services
 {
-    public class BarberService: IBarberService
+    public class BarberService : IBarberService
     {
         IBarberRepository _barberRepository;
 
@@ -14,26 +13,21 @@ namespace BarberShop.Services
             _barberRepository = barberRepository;
         }
 
-        public int CreateReservation(Reservation r)
-        {
-            return _barberRepository.CreateReservation(r);
-        }
 
-        public ActiveBarberList GetActiveBarbers()
+        public List<Barber> GetActiveBarbers()
         {
-            return _barberRepository.GetActiveBarbers();
-        }
+            var activeBarbers = _barberRepository.GetActiveBarbers();
 
-        public List<Reservation> GetReservations()
-        {
-            return _barberRepository.GetReservations();
+            Guards
+                .ThrowIf(activeBarbers == null || activeBarbers.Count == 0, "Active barber list cannot be null or empty")
+                .ThrowIf(activeBarbers.Count > 3, "There can only be up to three active barbers");
+
+            return activeBarbers;
         }
     }
 
     public interface IBarberService
     {
-        ActiveBarberList GetActiveBarbers();
-        List<Reservation> GetReservations();
-        int CreateReservation(Reservation r);
+        List<Barber> GetActiveBarbers();
     }
 }
