@@ -17,6 +17,9 @@ namespace BarberShop.Tests
             _mockBarberRepository = new Mock<IBarberRepository>();
         }
 
+        BarberService GetSut() =>
+            new BarberService(_mockBarberRepository.Object);
+
         [Fact]
         public void GetActiveBarbers_throws_when_repo_returns_null()
         {
@@ -25,7 +28,7 @@ namespace BarberShop.Tests
             _mockBarberRepository.Setup(r => r.GetActiveBarbers())
                 .Returns(barbers);
 
-            var sut = new BarberService(_mockBarberRepository.Object);
+            var sut = GetSut();
 
             Assert.Throws<ArgumentException>(() => sut.GetActiveBarbers());
         }
@@ -38,7 +41,7 @@ namespace BarberShop.Tests
             _mockBarberRepository.Setup(r => r.GetActiveBarbers())
                 .Returns(barbers);
 
-            var sut = new BarberService(_mockBarberRepository.Object);
+            var sut = GetSut();
 
             Assert.Throws<ArgumentException>(() => sut.GetActiveBarbers());
         }
@@ -57,7 +60,7 @@ namespace BarberShop.Tests
             _mockBarberRepository.Setup(r => r.GetActiveBarbers())
                 .Returns(barbers);
 
-            var sut = new BarberService(_mockBarberRepository.Object);
+            var sut = GetSut();
 
             Assert.Throws<ArgumentException>(() => sut.GetActiveBarbers());
         }

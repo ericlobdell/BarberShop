@@ -7,12 +7,12 @@ namespace BarberShop.Services
 {
     public class ReservationService: IReservationService
     {
-        IBarberRepository _barberRepository;
+        IBarberService _barberService;
         IReservationRepository _reservationRepository;
 
-        public ReservationService(IBarberRepository barberRepository, IReservationRepository reservationRepository)
+        public ReservationService(IReservationRepository reservationRepository, IBarberService barberService)
         {
-            _barberRepository = barberRepository;
+            _barberService = barberService;
             _reservationRepository = reservationRepository;
         }
 
@@ -32,7 +32,7 @@ namespace BarberShop.Services
                 .GetReservations()
                 .FirstOrDefault(r => r.Id == reservationId);
 
-            var activeBarbers = _barberRepository.GetActiveBarbers();
+            var activeBarbers = _barberService.GetActiveBarbers();
 
             Guards
                 .Require(reservationToUpdate, $"No reservation found with id {reservationId}")

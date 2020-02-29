@@ -19,8 +19,10 @@ namespace BarberShop.Services
             var activeBarbers = _barberRepository.GetActiveBarbers();
 
             Guards
-                .ThrowIf(activeBarbers == null || activeBarbers.Count == 0, "Active barber list cannot be null or empty")
-                .ThrowIf(activeBarbers.Count > 3, "There can only be up to three active barbers");
+                .Require(activeBarbers, "ACtive barbers  null")
+                .ThrowIf(
+                    (activeBarbers.Count == 0, "Active barber list cannot be null or empty"),
+                    (activeBarbers.Count > 3, "There can only be up to three active barbers"));
 
             return activeBarbers;
         }
