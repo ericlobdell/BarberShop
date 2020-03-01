@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using BarberShop.Models;
 using BarberShop.Services;
+using System;
 
 namespace BarberShop.Controllers
 {
@@ -18,7 +19,8 @@ namespace BarberShop.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var vm = GetViewModel();
+            return View(vm);
         }
 
         private HomePageViewModel GetViewModel()
@@ -29,10 +31,31 @@ namespace BarberShop.Controllers
             return new HomePageViewModel(activeBarbers, reservations);
         }
 
+        [HttpPost]
+        public IActionResult Create(CreateReservation createReservation)
+        {
+            var newReservation = new Reservation
+            {
+                Name = createReservation.Name,
+                PhoneNumber = createReservation.PhoneNumber,
+                BarberId = createReservation.BarberId,
+                ReservationTime = DateTime.Now
+            };
+
+            _reservationService.CreateReservation(newReservation);
+
+            return ReloadPage();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private IActionResult ReloadPage()
+        {
+            return Redirect("/");
         }
     }
 }

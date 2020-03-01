@@ -1,9 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop", "BarberShop\BarberShop.csproj", "{3D026088-BEC1-4CA3-8F32-56A7FACEE897}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop", "BarberShop\BarberShop.csproj", "{3D026088-BEC1-4CA3-8F32-56A7FACEE897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.Tests", "BarberShop.Tests\BarberShop.Tests.csproj", "{73DD6319-AD01-4FD8-AB86-11E3D9676F81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.Tests", "BarberShop.Tests\BarberShop.Tests.csproj", "{73DD6319-AD01-4FD8-AB86-11E3D9676F81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +20,11 @@ Global
 		{73DD6319-AD01-4FD8-AB86-11E3D9676F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73DD6319-AD01-4FD8-AB86-11E3D9676F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73DD6319-AD01-4FD8-AB86-11E3D9676F81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BAB0F37-3B9F-47C5-B507-53EE7CADF623}
 	EndGlobalSection
 EndGlobal

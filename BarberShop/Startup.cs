@@ -23,6 +23,7 @@ namespace BarberShop
             services.AddControllersWithViews();
 
             services.AddSingleton<IBarberRepository, BarberRepository>();
+            services.AddTransient<IBarberService, BarberService>();
             services.AddSingleton<IReservationRepository, ReservationRepository>();
             services.AddTransient<IReservationService, ReservationService>();
         }

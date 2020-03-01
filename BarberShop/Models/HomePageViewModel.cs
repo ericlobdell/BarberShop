@@ -11,7 +11,9 @@ namespace BarberShop.Models
         public HomePageViewModel(List<Barber> barbers, List<Reservation> reservations)
         {
             Reservations = reservations
-                .Select((r, i) => new ReservationViewModel(r, i))
+                .Select((r, i) => new ReservationViewModel(r, i, barbers))
+                .OrderBy(vm => vm.Position)
+                .OrderByDescending(vm => vm.IsInChair)
                 .ToList();
 
             Barbers = barbers
