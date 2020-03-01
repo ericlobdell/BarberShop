@@ -1,7 +1,4 @@
-﻿using System;
-using BarberShop.Services;
-
-namespace BarberShop.Models
+﻿namespace BarberShop.Models
 {
     public class Barber: DbEntity
     {

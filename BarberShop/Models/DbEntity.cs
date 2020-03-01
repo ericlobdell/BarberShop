@@ -1,5 +1,4 @@
-﻿using System;
-namespace BarberShop.Models
+﻿namespace BarberShop.Models
 {
     public class DbEntity
     {

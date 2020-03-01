@@ -29,8 +29,7 @@ namespace BarberShop.Services
         public void AssignReservation(int reservationId, int barberId)
         {
             var reservationToUpdate = _reservationRepository
-                .GetReservations()
-                .FirstOrDefault(r => r.Id == reservationId);
+                .GetReservation(reservationId);
 
             var activeBarbers = _barberService.GetActiveBarbers();
 

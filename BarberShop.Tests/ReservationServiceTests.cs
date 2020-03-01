@@ -31,6 +31,9 @@ namespace BarberShop.Tests
             _mockReservationRepository = new Mock<IReservationRepository>();
             _mockReservationRepository.Setup(r => r.GetReservations())
                 .Returns(new List<Reservation>{ _testReservation });
+            _mockReservationRepository.Setup(r => r.GetReservation(_testReservation.Id))
+                .Returns(_testReservation);
+
         }
 
         ReservationService GetSut() =>
@@ -55,8 +58,8 @@ namespace BarberShop.Tests
             int reservationId = _testReservation.Id;
             int barberId = _testBarber.Id;
 
-            _mockReservationRepository.Setup(r => r.GetReservations())
-                .Returns(new List<Reservation>());
+            _mockReservationRepository.Setup(r => r.GetReservation(reservationId))
+                .Returns<Reservation>(null);
 
             var sut = GetSut();
 

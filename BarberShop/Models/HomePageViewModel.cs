@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BarberShop.Models
 {
     public class HomePageViewModel
     {
-        double _averageCutTimeMinutes = 16.5;
-
-        public List<Barber> Barbers { get; }
-        public List<Reservation> Reservations { get; }
+        public List<BarberViewModel> Barbers { get; }
+        public List<ReservationViewModel> Reservations { get; }
 
         public HomePageViewModel(List<Barber> barbers, List<Reservation> reservations)
         {
-            Barbers = barbers;
-            Reservations = reservations;
+            Reservations = reservations
+                .Select((r, i) => new ReservationViewModel(r, i))
+                .ToList();
+
+            Barbers = barbers
+                .Select(b => new BarberViewModel(b, Reservations))
+                .ToList();
         }
     }
 }

@@ -1,26 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using BarberShop.Models;
+using BarberShop.Services;
 
 namespace BarberShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        IReservationService _reservationService;
+        IBarberService _barberService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IReservationService reservationService, IBarberService barberService)
         {
-            _logger = logger;
+            _reservationService = reservationService;
+            _barberService = barberService;
         }
 
         public IActionResult Index()
         {
             return View();
+        }
+
+        private HomePageViewModel GetViewModel()
+        {
+            var activeBarbers = _barberService.GetActiveBarbers();
+            var reservations = _reservationService.GetReservations();
+
+            return new HomePageViewModel(activeBarbers, reservations);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

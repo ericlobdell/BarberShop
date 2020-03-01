@@ -1,5 +1,3 @@
-using System;
-
 namespace BarberShop.Models
 {
     public class ErrorViewModel

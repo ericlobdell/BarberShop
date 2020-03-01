@@ -9,7 +9,6 @@ namespace BarberShop.Repositories
     {
         List<Reservation> _reservations;
 
-
         public ReservationRepository()
         {
             var firstReservationTime = DateTime.Now;
@@ -43,17 +42,19 @@ namespace BarberShop.Repositories
             };
         }
 
-        public int CreateReservation(Reservation r)
+        public int CreateReservation(Reservation reservation)
         {
-            _reservations.Add(r);
+            reservation.Id = _reservations.Max(r => r.Id) + 1;
+
+            _reservations.Add(reservation);
+
             return _reservations.Count;
         }
 
+        public Reservation GetReservation(int reservationId) => 
+            _reservations.FirstOrDefault(r => r.Id == reservationId);
 
-        public List<Reservation> GetReservations()
-        {
-            return _reservations;
-        }
+        public List<Reservation> GetReservations() => _reservations;
 
         public void SaveReservation(Reservation reservation)
         { 
@@ -65,6 +66,7 @@ namespace BarberShop.Repositories
     public interface IReservationRepository
     {
         List<Reservation> GetReservations();
+        Reservation GetReservation(int reservationId);
         int CreateReservation(Reservation reservation);
         void SaveReservation(Reservation reservation);
     }
