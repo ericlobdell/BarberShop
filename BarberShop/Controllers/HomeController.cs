@@ -23,6 +23,22 @@ namespace BarberShop.Controllers
             return View(vm);
         }
 
+        [Route("InChair/{reservationId}")]
+        public IActionResult InChair(int reservationId)
+        {
+            _reservationService.CompleteReservation(reservationId);
+
+            return ReloadPage();
+        }
+
+        [Route("RemovePreferredBarber/{reservationId}")]
+        public IActionResult RemovePreferredBarber(int reservationId)
+        {
+            _reservationService.AssignReservation(reservationId, 0);
+
+            return ReloadPage();
+        }
+
         private HomePageViewModel GetViewModel()
         {
             var activeBarbers = _barberService.GetActiveBarbers();

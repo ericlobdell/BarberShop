@@ -18,8 +18,12 @@ namespace BarberShop.Models
         public string Name { get; }
         public string PhoneNumber { get; }
         public int Position { get; }
-        public TimeSpan WaitTime => TimeSpan.FromMinutes(Position * _averageCutTimeMinutes);
-        public string WaitTimeDisplay => $"approx {WaitTime.TotalMinutes} min";
+        public TimeSpan WaitTime => IsInChair 
+            ? TimeSpan.Zero 
+            : TimeSpan.FromMinutes(Position * _averageCutTimeMinutes);
+        public string WaitTimeDisplay => IsInChair 
+            ? string.Empty 
+            : $"approx {WaitTime.TotalMinutes} min - {DateTime.Now.AddMinutes(WaitTime.TotalMinutes).ToShortTimeString()}";
 
         public ReservationViewModel(Reservation reservation, int position, List<Barber> barbers)
         {

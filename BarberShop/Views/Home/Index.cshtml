@@ -41,7 +41,11 @@
     <div class="col-md-3 reservations-list">
         <h3>Reservations</h3>
 
-        @foreach (var r in Model.Reservations)
+        @foreach (var r in Model.WaitingReservations)
+        {
+            <partial name="_ReservationCard" model="r" />
+        }
+        @foreach (var r in Model.CompleteReservations)
         {
             <partial name="_ReservationCard" model="r" />
         }

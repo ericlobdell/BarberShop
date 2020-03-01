@@ -2,22 +2,21 @@
 
     <div class="card @(Model.IsInChair ? "in-chair" : "")">
         <div class="card-body">
-            <h5 class="card-title">@Model.Position  - @Model.Name - @Model.PhoneNumber</h5>
+            <h5 class="card-title">@Model.Name (@Model.PhoneNumber)</h5>
             <p class="card-text">@Model.WaitTimeDisplay</p>
-
+            @if (Model.HasPreferredBarber && !Model.IsInChair)
+            {
+                <p>&nbsp;Waiting for @Model.BarberName <a href="/RemovePreferredBarber/@Model.Id" class="card-link"><i class="fas fa-times"></i></a></p>
+            }
+        </div>
+        <div class="card-footer text-muted">
             @if (Model.IsInChair)
             {
-                <p>In Chair</p>
+                <span>In Chair</span>
             }
             else
             {
-                <a href="#" class="btn btn-primary">In Chair</a>
-            }
-
-
-            @if (Model.HasPreferredBarber)
-            {
-                <p>Waiting for @Model.BarberName <a href="#" class="btn btn-primary"><i class="fas fa-times"></i></a></p>
+                <a href="/InChair/@Model.Id" class="btn btn-primary">In Chair</a>
             }
         </div>
     </div>

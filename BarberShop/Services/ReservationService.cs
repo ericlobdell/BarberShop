@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BarberShop.Models;
 using BarberShop.Repositories;
@@ -41,6 +42,19 @@ namespace BarberShop.Services
 
             _reservationRepository.SaveReservation(reservationToUpdate);
         }
+
+        public void CompleteReservation(int reservationId)
+        {
+            var reservationToComplete = _reservationRepository
+                .GetReservation(reservationId);
+
+            Guards
+                .Require(reservationToComplete, $"No reservation found with id {reservationId}");
+
+            reservationToComplete.InChairTime = DateTime.Now;
+
+            _reservationRepository.SaveReservation(reservationToComplete);
+        }
     }
 
     public interface IReservationService
@@ -48,5 +62,6 @@ namespace BarberShop.Services
         List<Reservation> GetReservations();
         int CreateReservation(Reservation r);
         void AssignReservation(int reservationId, int barberId);
+        void CompleteReservation(int reservationId);
     }
 }
