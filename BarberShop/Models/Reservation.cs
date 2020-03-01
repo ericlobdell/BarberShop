@@ -3,7 +3,6 @@ namespace BarberShop.Models
 {
     public class Reservation: DbEntity
     {
-        public DateTime ReservationTime { get; set; }
         public DateTime? InChairTime { get; set; }
         public int BarberId { get; set; }
         public string Name { get; set; }

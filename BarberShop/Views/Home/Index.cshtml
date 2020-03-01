@@ -8,21 +8,23 @@
 
 <div class="row">
     <div class="col-md-12">
-        @DateTime.Now.ToShortTimeString()
+        <h2>Current Time: @DateTime.Now.ToShortTimeString()</h2>
     </div>
+    <hr />
+
     <div class="col-md-12">
         <form method="post" class="form-inline">
-            <div class="form-group">
-                <label for="Name">Name</label>
+            <div class="form-group mb-2 mr-sm-2">
+                <label class="sr-only" for="Name">Name</label>
                 <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
             </div>
-            <div class="form-group">
-                <label for="PhoneNumber">Phone Number</label>
+            <div class="form-group mb-2 mr-sm-2">
+                <label class="sr-only" for="PhoneNumber">Phone Number</label>
                 <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="Phone Number">
             </div>
             <div class="form-group">
                 <label for="BarberId">Preferred Barber</label>
-                <select class="form-control" id="BarberId" name="BarberId">
+                <select class="form-control m-2" id="BarberId" name="BarberId">
                     <option value="0" selected>No Preference</option>
                     @foreach (var b in Model.Barbers)
                     {
@@ -34,9 +36,9 @@
             <button type="submit" asp-controller="Home" asp-action="Create">Create</button>
         </form>
     </div>
-    
-</div>
 
+</div>
+<hr />
 <div class="row">
     <div class="col-md-3 reservations-list">
         <h3>Reservations</h3>
@@ -58,7 +60,7 @@
             <h4>@b.Name</h4>
             @foreach (var r in b.Reservations)
             {
-                <partial name="_ReservationCard" model="r" />
+                <partial name="_BarberReservationCard" model="r" />
             }
         </div>
     }

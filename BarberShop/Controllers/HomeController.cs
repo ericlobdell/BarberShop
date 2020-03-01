@@ -54,8 +54,7 @@ namespace BarberShop.Controllers
             {
                 Name = createReservation.Name,
                 PhoneNumber = createReservation.PhoneNumber,
-                BarberId = createReservation.BarberId,
-                ReservationTime = DateTime.Now
+                BarberId = createReservation.BarberId
             };
 
             _reservationService.CreateReservation(newReservation);

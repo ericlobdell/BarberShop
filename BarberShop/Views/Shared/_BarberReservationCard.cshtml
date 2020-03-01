@@ -1,0 +1,18 @@
+﻿@model ReservationViewModel
+
+    <div class="card @(Model.IsInChair ? "in-chair" : "")">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name (@Model.PhoneNumber)</h5>
+            <p class="card-text">@Model.WaitTimeDisplay</p>
+        </div>
+        <div class="card-footer text-muted">
+            @if (Model.IsInChair)
+            {
+                <span>In Chair</span>
+            }
+            else
+            {
+                <a href="/InChair/@Model.Id" class="btn btn-primary">In Chair</a>
+            }
+        </div>
+    </div>
